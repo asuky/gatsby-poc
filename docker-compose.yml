@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+    test:
+        image: httpd:latest
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile_test
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./src:/usr/local/apache2/htdocs
+        environment:
+            - NODE_ENV=development
+            - GATSBY_WEBPACK_PUBLICPATH=/
+            - CHOKIDAR_USEPOLLING=1
+        #command: gatsby develop --host=0.0.0.0

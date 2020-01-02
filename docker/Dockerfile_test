@@ -1,0 +1,9 @@
+FROM httpd:latest
+EXPOSE 8000
+WORKDIR /usr/local/apache2/htdocs
+RUN apt-get update
+RUN apt-get install -y curl git
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+RUN . /root/.bashrc \
+    && nvm install --lts \
+    && npm install -g gatsby-cli --unsafe-perm 
